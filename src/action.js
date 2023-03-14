@@ -89,7 +89,6 @@ async function exportSecrets() {
         // Output the result
 
         var value = result.value;
-	value = value.replace(/([$])/g, '\\$1')    
         const request = result.request;
         const cachedResponse = result.cachedResponse;
 
@@ -107,6 +106,7 @@ async function exportSecrets() {
                 command.issue('add-mask', line);
             }
         }
+        value = value.replace(/([$])/g, '\\$1')    
         if (exportEnv) {
             core.exportVariable(request.envVarName, `${value}`);
         }
