@@ -89,6 +89,7 @@ async function exportSecrets() {
         // Output the result
 
         var value = result.value;
+	value = value.replace(/([$])/g, '\\$1')    
         const request = result.request;
         const cachedResponse = result.cachedResponse;
 
