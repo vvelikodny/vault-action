@@ -101,12 +101,13 @@ async function exportSecrets() {
             value = Buffer.from(value, secretEncodingType).toString();
         }
 
-        for (const line of value.replace(/\r/g, '').split('\n')) {
-            if (line.length > 0) {
-                command.issue('add-mask', line);
-            }
-        }
-        value = value.replace(/([$])/g, '\\\\$1')    
+//         for (const line of value.replace(/\r/g, '').split('\n')) {
+//             if (line.length > 0) {
+//                 command.issue('add-mask', line);
+//             }
+//         }
+        value = value.replace(/([$])/g, '\\\\$1')  
+	core.debug(value)
         if (exportEnv) {
             core.exportVariable(request.envVarName, `${value}`);
         }
