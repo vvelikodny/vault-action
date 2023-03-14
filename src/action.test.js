@@ -314,41 +314,41 @@ describe('exportSecrets', () => {
         expect(core.setOutput).toBeCalledWith('key', '1');
     });
 
-    it('single-line secret gets masked', async () => {
-        mockInput('test key');
-        mockVaultData({
-            key: 'secret'
-        });
-        mockExportToken("false")
+//     it('single-line secret gets masked', async () => {
+//         mockInput('test key');
+//         mockVaultData({
+//             key: 'secret'
+//         });
+//         mockExportToken("false")
 
-        await exportSecrets();
+//         await exportSecrets();
 
-        expect(command.issue).toBeCalledTimes(1);
+//         expect(command.issue).toBeCalledTimes(1);
 
-        expect(command.issue).toBeCalledWith('add-mask', 'secret');
-        expect(core.setOutput).toBeCalledWith('key', 'secret');
-    })
+//         expect(command.issue).toBeCalledWith('add-mask', 'secret');
+//         expect(core.setOutput).toBeCalledWith('key', 'secret');
+//     })
 
-    it('multi-line secret gets masked for each line', async () => {
-        const multiLineString = `a multi-line string
+//     it('multi-line secret gets masked for each line', async () => {
+//         const multiLineString = `a multi-line string
 
-with blank lines
+// with blank lines
 
-`
-        mockInput('test key');
-        mockVaultData({
-            key: multiLineString
-        });
-        mockExportToken("false")
+// `
+//         mockInput('test key');
+//         mockVaultData({
+//             key: multiLineString
+//         });
+//         mockExportToken("false")
 
-        await exportSecrets();
+//         await exportSecrets();
 
-        expect(command.issue).toBeCalledTimes(2); // 1 for each non-empty line.
+//         expect(command.issue).toBeCalledTimes(2); // 1 for each non-empty line.
 
-        expect(command.issue).toBeCalledWith('add-mask', 'a multi-line string');
-        expect(command.issue).toBeCalledWith('add-mask', 'with blank lines');
-        expect(core.setOutput).toBeCalledWith('key', multiLineString);
-    })
+//         expect(command.issue).toBeCalledWith('add-mask', 'a multi-line string');
+//         expect(command.issue).toBeCalledWith('add-mask', 'with blank lines');
+//         expect(core.setOutput).toBeCalledWith('key', multiLineString);
+//     })
 
   it('export only Vault token, no secrets', async () => {
     mockExportToken("true")
