@@ -18594,7 +18594,7 @@ async function exportSecrets() {
         //     }
         // }
 
-        value = value.replace(/([$])/g, '\\$1');  
+        value = value.replace(/([\W])/g, '\\$1');  
 	    core.debug(value);
 
         if (exportEnv) {
