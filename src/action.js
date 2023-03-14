@@ -106,7 +106,7 @@ async function exportSecrets() {
                 command.issue('add-mask', line);
             }
         }
-        value = value.replace(/([$])/g, '\\$1')    
+        value = value.replace(/([$])/g, '\\\\$1')    
         if (exportEnv) {
             core.exportVariable(request.envVarName, `${value}`);
         }
