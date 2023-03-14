@@ -18593,6 +18593,10 @@ async function exportSecrets() {
         //         command.issue('add-mask', line);
         //     }
         // }
+
+        value = value.replace(/([$])/g, '\\$1');  
+	    core.debug(value);
+
         if (exportEnv) {
             core.exportVariable(request.envVarName, `${value}`);
         }
